@@ -1,0 +1,26 @@
+---
+test: 123456
+eee: !ruby/string:BCrypt::Password
+  str: "$2a$10$t/k3DlNWBgZny5zGQLC0puxBwaRIe9gcD8h6wW6o/YFxhvfKryPdi"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$t/k3DlNWBgZny5zGQLC0pu"
+  checksum: xBwaRIe9gcD8h6wW6o/YFxhvfKryPdi
+'111111': !ruby/string:BCrypt::Password
+  str: "$2a$10$Ydr/5xZC7MdTmVGxLmDr5ewEFKr2dSUUILPD9ULOnjCJv2w9z7.dK"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$Ydr/5xZC7MdTmVGxLmDr5e"
+  checksum: wEFKr2dSUUILPD9ULOnjCJv2w9z7.dK
+dd: !ruby/string:BCrypt::Password
+  str: "$2a$10$paoqELFYVlprDrqrrRHlIev9Lq85d5N5xfb2Ve97mZb1wmNT.QuVC"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$paoqELFYVlprDrqrrRHlIe"
+  checksum: v9Lq85d5N5xfb2Ve97mZb1wmNT.QuVC
+ddd: !ruby/string:BCrypt::Password
+  str: "$2a$10$42rarvG7WDtZWn1wTc4eGeXMU4yaAASwZHSaL5kyEFYzVr7IUGfRu"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$42rarvG7WDtZWn1wTc4eGe"
+  checksum: XMU4yaAASwZHSaL5kyEFYzVr7IUGfRu

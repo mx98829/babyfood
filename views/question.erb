@@ -1,0 +1,23 @@
+ <p>This is the week of <%= get_monday_date(@id)%> </p> <a href="/overview">Overview</a>
+ 
+<ul>
+  <form action= "/question/<%=@id %>" method= "post">
+    <% if session[:food][@id]%>
+      <% @week.each do |num, week| %>
+      <li><label for "<%=week %>"><strong><%=week %></strong></label></li>
+      <textarea name= "<%=week %>" rows="3" cols="80"><%=session[:food][@id][week] %></textarea>
+      <P></P>
+      <% end %>
+    <% else %>
+      <% @week.each do |num, week| %>
+      <li><label for "<%=week %>"><strong><%=week %></strong></label></li>
+      <textarea name= "<%=week %>" rows="3" cols="80"  %></textarea>
+      <P></P>
+      <% end %>
+    <% end %>
+    <button type= "submit">Save</button>
+  </form>
+</ul>
+
+<a href="/question/<%=(@id - 1) %>">Last week</a>
+<a href="/question/<%=(@id + 1) %>">Next week</a>

@@ -1,0 +1,12 @@
+<a href = "/question/<%=today_id %>">Add today</a>
+
+<form action= "/signout" method= "post">
+  <button type= "submit">Sign out</button>
+</form>
+
+<ul>
+  <%session[:id].each do |id|%>
+    <li><a href = "/question/<%=id%>"><%=get_monday_date(id)%></a></li>
+  <%end%>
+</ul>
+ 

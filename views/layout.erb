@@ -1,0 +1,13 @@
+<head>
+  <title>baby_food</title>
+  <link rel="stylesheet" href="/stylesheets/application.css">
+</head>
+
+<body>
+  <h3>What does <%= baby_name%> eat today?</h3>
+  <% if session[:message]%>
+    <p class = 'message'><%= session.delete(:message) %></p>
+  <% end %>
+  <p></p>
+  <%=yield%>
+</body>
