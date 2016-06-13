@@ -18,7 +18,7 @@ before do
             5 => 'Friday',
             6 => 'Saturday',
             0 => 'Sunday' }
-  session[:id] ||= []
+  session[:identity] ||= []
   session[:food] ||= {}
   @users = YAML.load_file('users.yaml')
 end
@@ -77,10 +77,10 @@ end
 
 get '/setup' do
   ensure_sign_in
-  if !session[:food][0]
-    erb :setup, layout: :layout
-  else
+  if session[:food][0]
     redirect '/overview'
+  else
+    erb :setup
   end
 end
 
@@ -90,7 +90,7 @@ post '/setup' do
 
   if session[:baby].strip.empty?
     session[:message] = 'Please put in a valid name'
-    erb :setup, layout: :layout
+    erb :setup
   else
     session[:food][0] = {}
     redirect '/question/0'
@@ -98,7 +98,7 @@ post '/setup' do
 end
 
 get '/signup' do
-  erb :signup, layout: :layout
+  erb :signup
 end
 
 post '/signup' do
@@ -107,13 +107,13 @@ post '/signup' do
 
   if username.strip.empty?
     session[:message] = 'Username can not be empty'
-    erb :signup, layout: :layout
+    erb :signup
   elsif password.size < 6
     session[:message] = 'Password must be at least 6 characters long'
-    erb :signup, layout: :layout
+    erb :signup
   elsif password.scan(/\d/).empty?
     session[:message] = 'password must contain at least one number'
-    erb :signup, layout: :layout
+    erb :signup
   else
     @users[username] = BCrypt::Password.create(password)
     File.open('users.yaml', 'w') { |file| file.write @users.to_yaml }
@@ -123,7 +123,7 @@ post '/signup' do
 end
 
 get '/signin' do
-  erb :signin, layout: :layout
+  erb :signin
 end
 
 post '/signin' do
@@ -134,7 +134,7 @@ post '/signin' do
     redirect '/setup'
   else
     session[:message] = 'Sign in is failed'
-    erb :signin, layout: :layout
+    erb :signin
   end
 end
 
@@ -147,14 +147,14 @@ end
 get '/overview' do
   ensure_sign_in
   ensure_set_up
-  erb :overview, layout: :layout
+  erb :overview
 end
 
 get '/question/:id' do
   ensure_sign_in
   ensure_set_up
   @id = params[:id].to_i
-  erb :question, layout: :layout
+  erb :question
 end
 
 post '/question/:id' do
@@ -164,8 +164,7 @@ post '/question/:id' do
   unless @week.all? do |_, week|
     params[week.to_sym].empty?
   end
-
-    session[:id] << @id unless session[:id].include?(@id)
+    session[:identity] << @id unless session[:identity].include?(@id)
     session[:food][@id] = {}
 
     @week.each do |_, week|
