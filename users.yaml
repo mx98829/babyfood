@@ -5,3 +5,15 @@ dd: !ruby/string:BCrypt::Password
   cost: 10
   salt: "$2a$10$Ge34e8B04jYOBJuxyKaoH."
   checksum: o0AVRGNC7xRXKj2ghQ63qjBgiltaR2O
+pp: !ruby/string:BCrypt::Password
+  str: "$2a$10$nmNMoNMP4.u2FBsoLb3hMO30fqTQMKOzo/rdbJlv9IkGcA/.bu652"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$nmNMoNMP4.u2FBsoLb3hMO"
+  checksum: 30fqTQMKOzo/rdbJlv9IkGcA/.bu652
+ppp: !ruby/string:BCrypt::Password
+  str: "$2a$10$gzLCIW62z5gnu/8KCBCoM.XU2XHSRxqTqyv4TGiBGfEQa4tpsnmNu"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$gzLCIW62z5gnu/8KCBCoM."
+  checksum: XU2XHSRxqTqyv4TGiBGfEQa4tpsnmNu

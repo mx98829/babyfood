@@ -5,7 +5,7 @@
 </form>
 
 <ul>
-  <%session[:id].each do |id|%>
+  <%session[:identity].each do |id|%>
     <li><a href = "/question/<%=id%>"><%=get_monday_date(id)%></a></li>
   <%end%>
 </ul>

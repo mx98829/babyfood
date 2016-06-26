@@ -4,6 +4,7 @@ require 'tilt/erubis'
 require 'date'
 require 'yaml'
 require 'bcrypt'
+require 'pry'
 
 configure do
   enable :sessions
@@ -20,13 +21,13 @@ before do
             0 => 'Sunday' }
   session[:identity] ||= []
   session[:food] ||= {}
+  session[:the_first_monday] ||= Date.today + (1 - Date.today.wday)
   @users = YAML.load_file('users.yaml')
 end
 
 helpers do
   def get_monday_date(id)
-    date = Date.today
-    date + (1 - date.wday) + (7 * id)
+    session[:the_first_monday] + (7 * id)
   end
 
   def today_id
@@ -63,6 +64,10 @@ helpers do
       session[:baby]
     end
   end
+
+  # def add_week_on_monday
+  #   session[:identity] << session[:identity].last + 1 if Date.today.wday == 1
+  # end
 end
 
 get '/' do
